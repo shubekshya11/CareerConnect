@@ -1,0 +1,15 @@
+@use "../globals" as *;
+
+#careers,
+#job-portal {
+  #careers-footer {
+    padding: 120px 0;
+}
+}
+
+#careers-hero {
+  .box-container {
+      background: url("/images/marketplace-hero-banner-background.webp") no-repeat center right/cover;
+    }
+}
+

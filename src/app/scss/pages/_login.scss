@@ -1,0 +1,14 @@
+@use "../globals" as *;
+#loginPage {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+
+    .form-group {
+        padding: 4rem 0;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+}

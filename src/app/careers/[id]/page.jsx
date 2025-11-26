@@ -1,0 +1,212 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+
+const JobDetails = () => {
+  const params = useParams();
+  const router = useRouter();
+  const id = params?.id;
+
+  const [job, setJob] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isSticky, setIsSticky] = useState(false);
+
+  // Fetch job details
+  useEffect(() => {
+    const fetchJob = async () => {
+      if (!id) return;
+      try {
+        const res = await fetch(`/api/jobs/${id}`);
+        if (!res.ok) throw new Error("Failed to fetch job details");
+        const data = await res.json();
+        setJob(data);
+      } catch (e) {
+        setError(e.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchJob();
+  }, [id]);
+
+  // Handle scroll 
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsSticky(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const handleApply = () => {
+    if (job) router.push(`/job-portal/apply?job_id=${job.id}`);
+  };
+
+  if (error)
+    return (
+      <div className="container-fluid text-center text-danger py-5">
+        {error}
+      </div>
+    );
+
+  if (!job && !loading)
+    return (
+      <div className="container-fluid text-center py-5">
+        Job not found.
+      </div>
+    );
+
+  return (
+    <>
+      <Header />
+      <div className="container">
+        <div className="row">
+          {/* Main content */}
+          <div className="col-md-9 py-4 mb-5 pe-5">
+            <div className="mb-4">
+              <h3 className={`mb-2 ${loading ? "placeholder-glow" : ""}`}>
+                {loading ? <span className="placeholder col-6"></span> : job.title}
+              </h3>
+              <p className={`text-muted mb-2 ${loading ? "placeholder-glow" : ""}`}>
+                {loading ? <span className="placeholder col-4"></span> : job.location}
+              </p>
+
+              <div className="row">
+                <div className="col-12 col-md-6">
+                  <p className="mb-1">
+                    {loading ? (
+                      <span className="placeholder-glow">
+                        <span className="placeholder col-3"></span>
+                      </span>
+                    ) : (
+                      <>
+                        <strong>Type:</strong> {job.job_type || "N/A"}
+                      </>
+                    )}
+                  </p>
+                  <p className="mb-1">
+                    {loading ? (
+                      <span className="placeholder-glow">
+                        <span className="placeholder col-2"></span>
+                      </span>
+                    ) : (
+                      <>
+                        <strong>Vacancy:</strong> {job.vacancy_qty || "N/A"}
+                      </>
+                    )}
+                  </p>
+                </div>
+                <div className="col-12 col-md-6">
+                  <p className="mb-1">
+                    {loading ? (
+                      <span className="placeholder-glow">
+                        <span className="placeholder col-3"></span>
+                      </span>
+                    ) : (
+                      <>
+                        <strong>Salary:</strong> {job.salary || "N/A"}
+                      </>
+                    )}
+                  </p>
+                  <p className="mb-0">
+                    {loading ? (
+                      <span className="placeholder-glow">
+                        <span className="placeholder col-3"></span>
+                      </span>
+                    ) : (
+                      <>
+                        <strong>Deadline:</strong> {job.deadline || "N/A"}
+                      </>
+                    )}
+                  </p>
+                </div>
+              </div>
+            </div>
+            {["qualifications","job_description", "responsibilities"].map((key) => (
+              <div className="mb-4" key={key}>
+                <h5 className={`mb-2 ${loading ? "placeholder-glow" : ""}`}>
+                  {loading ? <span className="placeholder col-4"></span> : key.replace("_", " ").toUpperCase()}
+                </h5>
+                <div 
+                  className={`mb-0 ${loading ? "placeholder-glow" : ""}`}
+                  style={{ whiteSpace: "pre-line" }}
+                >
+                  {loading ? <span className="placeholder col-12"></span> : job[key] || "No description available."}
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Sidebar */}
+          <div className="col-md-3 py-3 border-start my-3 mb-5">
+            <div
+              className="ps-2 pb-3 sticky"
+              style={
+                isSticky
+                  ? { top: "100px", width: "300px", transition: "all 0.5s ease-in-out" }
+                  : {}
+              }
+            >
+              <h5 className={`mb-3 ${loading ? "placeholder-glow" : ""}`}>
+                {loading ? <span className="placeholder col-6"></span> : "Apply for this position"}
+              </h5>
+              <button
+                className={`btn btn-primary w-100 mb-3 ${loading ? "disabled placeholder col-12" : ""}`}
+                onClick={handleApply}
+                disabled={loading}
+              >
+                {!loading && "Apply Now"}
+              </button>
+              <div className="text-muted small">
+                <p className="mb-2">
+                  {loading ? (
+                    <span className="placeholder-glow">
+                      <span className="placeholder col-6"></span>
+                    </span>
+                  ) : (
+                    <>
+                      <strong>Application Deadline:</strong>
+                    </>
+                  )}
+                  <br />
+                  {loading ? (
+                    <span className="placeholder col-6"></span>
+                  ) : (
+                    job.deadline || "N/A"
+                  )}
+                </p>
+
+                <p className="mb-0">
+                  {loading ? (
+                    <span className="placeholder-glow">
+                      <span className="placeholder col-4"></span>
+                    </span>
+                  ) : (
+                    <>
+                      <strong>Positions Available:</strong>
+                    </>
+                  )}
+                  <br />
+                  {loading ? (
+                    <span className="placeholder col-3"></span>
+                  ) : (
+                    job.vacancy_qty || "N/A"
+                  )}
+                </p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer id="contact-footer" className="pt-5">
+        <Footer />
+      </footer>
+    </>
+  );
+};
+
+export default JobDetails;

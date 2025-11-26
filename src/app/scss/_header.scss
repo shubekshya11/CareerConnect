@@ -1,0 +1,198 @@
+@use "globals" as *;
+header {
+  background-color: $white;
+  color: $text-color;
+  border-bottom: 1px solid rgba(#ced4da, 0.5);
+  box-shadow: 0 2px 4px rgba(#333333, 0.04);
+  position: sticky;
+  top: 0;
+  max-width: 100%;
+  z-index: 1000;
+  transition: all 0.3s ease-in-out;
+
+
+
+  .company-info {
+    background-color: $primary-color;
+    padding: 0.5rem 0rem;
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: $white;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .material-icons {
+        font-size: 20px;
+      }
+
+      .phone-and-email {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+        a {
+          color: $white;
+          text-decoration: none;
+        }
+        a:hover {
+          color: $white;
+          text-decoration: underline;
+        }
+        span {
+          display: flex;
+          gap: 0.5rem;
+          align-items: center;
+        }
+      }
+
+      .social-icons {
+        display: flex;
+        gap: 0.8rem;
+        align-items: center;
+      }
+    }
+  }
+
+  .navbar {
+    padding: 4px 0;
+    .content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+
+        .bar {
+          min-width: 25px;
+          height: 3px;
+          background-color: $text-color;
+          transition: 0.3s;
+          z-index: 999;
+        }
+      }
+
+      ul.nav-links {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        gap: 2rem;
+        @media (max-width: 1139px) {
+          justify-content: flex-start;
+          align-items: flex-start;
+        }
+
+        a {
+          text-decoration: none;
+        }
+        a:hover {
+          color: $primary-color;
+        }
+
+        a.active {
+          color: $primary-color;
+        }
+
+        a.btn-sakchha-primary:hover {
+          color: $white;
+        }
+
+        li.hamburger-close-btn {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.sticky {
+  position: sticky;
+  top: -40px;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+
+@media (max-width: 1139px) {
+  header {
+    .company-info {
+      display: none;
+    }
+
+    .navbar {
+      .hamburger {
+        display: flex !important;
+      }
+
+      .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 60%;
+        height: 100vh;
+        background-color: $white;
+        flex-direction: column;
+        font-size: 1.5rem;
+        gap: 1rem;
+        padding: 1rem;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        transform: translateX(100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 9999;
+
+        .hide-btn-style-on-mobile {
+          background-color: transparent;
+          padding: 0;
+          color: $text-color;
+          font-weight: 400;
+          font-size: 1.5rem;
+          text-align: left;
+          border: 0;
+        }
+
+        .hide-btn-style-on-mobile:hover {
+          color: $primary-color !important;
+          border: 0;
+        }
+
+          li.hamburger-close-btn {
+            display: block !important;
+          }
+      }
+
+      .nav-links.open {
+        transform: translateX(0);
+      }
+    }
+  }
+
+  .sticky {
+
+    top: 0px;
+
+  }
+
+  .overlayForMenu {
+    display: none;
+          position: fixed;
+          width: 100vw;
+          height: 100vh;
+          top: 0;
+          left: 0;
+          background-color: rgba(0, 0, 0, 0.25);
+          z-index: 999;
+  }
+
+  .overlayForMenu.open {
+    display: block;
+  }
+
+}

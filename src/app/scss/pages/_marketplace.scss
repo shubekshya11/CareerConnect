@@ -1,0 +1,203 @@
+@use "../globals" as *;
+#marketplace-hero {
+  .box-container {
+    background: url("/images/marketplace-hero-banner-background.webp") no-repeat center right/cover;
+  }
+}
+
+#marketplace-service-buyers {
+    padding: 140px 0 70px 0;
+    .service-providers-image {
+      
+      padding-left: 2.5rem;
+      width: 100%;
+  
+      .collage {
+        max-height: 457px;
+        display: flex;
+        gap: 12px;
+  
+        .left-col {
+          min-width: 261px;
+          height: 457px;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+  
+        .right-col {
+          width: 100%;
+          max-height: 457px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .right-img-2 {
+            min-width: 200px;
+            height: 250px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              position: absolute;
+              @media (min-width: 1800px) {
+                height: auto !important;
+                top: 0;
+              }
+            }
+          }
+          .right-img-3 {
+            min-width: 200px;
+            min-height: 194px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  #marketplace-service-providers {
+    padding: 140px 0;
+    padding-bottom: 340px;
+    .service-providers-image {
+      
+      padding-right: 2.5rem;
+      width: 100%;
+  
+      .collage {
+        max-height: 457px;
+        display: flex;
+        gap: 12px;
+        flex-direction: row-reverse;
+  
+        .left-col {
+          min-width: 225px;
+          height: 457px;
+          position: relative;
+          border-radius: 16px;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+  
+        .right-col {
+          width: 100%;
+          max-height: 457px;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          .right-img-2 {
+            min-width: 200px;
+            height: 250px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+          .right-img-3 {
+            min-width: 200px;
+            min-height: 194px;
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1280px) {
+    #marketplace-service-buyers {
+      .service-providers-image {
+        padding-left: 0;
+        padding-top: 48px;
+        .collage {
+          width: 100%;
+          max-height: 350px;
+          .left-col {
+
+            max-height: 350px;
+            min-height: 350px;
+            height: 350px;
+          }
+          .right-col {
+            max-width: fit-content;
+            .right-img-2 {
+              min-width: 100%;
+              max-width: 100%;
+              img {
+                width: 100%;
+              }
+            }
+            .right-img-3 {
+              min-width: 100%;
+              max-width: 100%;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    #marketplace-service-providers {
+      padding-bottom: 140px;
+      .service-providers-image {
+        padding-top: 48px;
+        .collage {
+          width: 100%;
+          max-height: 350px;
+          .left-col {
+            min-width: 50%;
+            max-height: 350px;
+            min-height: 350px;
+            height: 350px;
+          }
+          .right-col {
+            max-width: 50%;
+            .right-img-2 {
+              min-width: 100%;
+              max-width: 100%;
+              img {
+                width: 100%;
+              }
+            }
+            .right-img-3 {
+              min-width: 100%;
+              max-width: 100%;
+              img {
+                width: 100%;
+              }
+            }
+          }
+        }
+      }
+    }
+  }

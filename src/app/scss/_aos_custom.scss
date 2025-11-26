@@ -1,0 +1,10 @@
+// These are custom aos animations that are not included in the aos library
+@use "globals" as *;
+// Fade Out
+[data-aos="fade-out"] {
+  opacity: 1 !important;
+  transition-property: opacity, transform !important;
+  &.aos-animate {
+    opacity: 0 !important; // Fades out when animated
+  }
+}

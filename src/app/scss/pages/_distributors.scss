@@ -1,0 +1,51 @@
+@use "../globals" as *;
+#distributors-contact-hero {
+    .box-container{
+      background: url('/images/contact-hero-banner-background.webp')$primary-color-dark no-repeat center right/cover;
+        color: $white;
+        padding: 48px;
+    }
+}
+
+#distributors-contact-us-page-form {
+
+padding-top: 70px;
+.company-detail {
+    padding-right: 2rem;
+
+          form.form-group {
+            div {
+              margin: 1rem 0;
+            }
+          }
+
+          @media (max-width: 1139px) {
+            padding-right: 0;
+          }
+        }
+
+        .video-container {
+          display: flex;
+          justify-content: end;
+
+          iframe{
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+            @media (max-width: 1139px) {
+                padding-top: 2rem;
+                flex-direction: column;
+                justify-content: center !important;
+                iframe{
+                  width: 100%;
+              }
+            }
+
+            
+
+        }
+    }
+
+footer#contact-us-footer {
+    padding-top: 72px;
+}

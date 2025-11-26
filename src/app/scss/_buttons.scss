@@ -1,0 +1,79 @@
+@use "globals" as *;
+.btn {
+  // bootstrap class override
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  border-radius: 6.25rem;
+  border-style: 1px solid $black;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover {
+    text-decoration: none;
+  }
+}
+.btn-sakchha-primary {
+  background-color: $primary-color;
+  color: $white;
+  &:hover {
+    background-color: $primary-color-light;
+    color: $white;
+  }
+  &:focus-visible, &:focus {
+    background-color: $primary-color-light;
+    color: $white;
+    box-shadow: 0 0 0 0.2rem rgba($primary-color-highlight, 0.5);
+  }
+}
+.btn-sakchha-secondary {
+  background-color: $secondary-color;
+  color: $white;
+  &:hover {
+    background-color: $secondary-color-dark;
+    color: $white;
+  }
+}
+
+.btn-sakchha-outline {
+  background-color: transparent;
+  color: $black;
+  border: 1px solid $black;
+  &:hover {
+    background-color: $black;
+    color: $white;
+  }
+  &:focus, &:focus-visible {
+    background-color: $black;
+    color: $white;
+    box-shadow: 0 0 0 0.2rem rgba($black, 0.5);
+  }
+}
+
+.btn-sakchha-outline-white {
+  color: $white;
+  border: 1px solid $white;
+  &:hover {
+    background-color: $white;
+    color: $black;
+  }
+
+   &:focus, &:focus-visible {
+    background-color: $white;
+    color: $black;
+    box-shadow: 0 0 0 0.2rem rgba($white, 0.5);
+   }
+}
+
+.btn-sakchha-tertiary {
+  background-color: $tertiary-color;
+  color: $white;
+  &:hover {
+    background-color: $tertiary-color-dark;
+    color: $white;
+  }
+}
+
+
