@@ -88,26 +88,12 @@ const Header = () => {
               </span>
               <span>
                 <i className="material-icons">email</i>
-                <a href="mailto:info@sakchha.com">info@sakchha.com</a>
+                <a href="mailto:info@careerconnect.com">info@careerconnect.com</a>
               </span>
             </div>
             <div className="social-icons">
               <a
-                href="https://www.facebook.com/profile.php?id=61560214274526"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src="/images/icons-fb.svg" alt="Facebook" />
-              </a>
-              <a
-                href="https://www.instagram.com/sakchha_"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src="/images/icons-insta.svg" alt="Instagram" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/sakchha/posts/?feedView=all"
+                href="https://www.linkedin.com/company/careers/posts/?feedView=all"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -122,7 +108,7 @@ const Header = () => {
         <div className="container">
           <div className="content">
             <a className="navbar-brand d-flex align-items-center" href="/">
-              <img src="/images/logo.svg" alt="Sakchha" width="78" />
+              <img src="/images/logo.svg" alt="CareerConnect" width="78" />
               {process.env.NODE_ENV == 'development' && (
                 <span className="dev-mode-badge" title="Development Mode">
                   DEV MODE

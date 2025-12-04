@@ -42,8 +42,8 @@ export default function Home() {
                           <p className="mb-0 text-muted">
                             Learn about responsibilities, growth, and benefits before applying.
                           </p>
-                      </div>
-                    </li>
+                        </div>
+                      </li>  {/* ← THIS WAS MISSING */}
                       <li className="d-flex gap-3 mb-3">
                         <span className="material-icons text-primary">verified</span>
                         <div>
@@ -62,7 +62,8 @@ export default function Home() {
                           </p>
                         </div>
                       </li>
-                  </ul>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>

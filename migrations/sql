@@ -1,0 +1,88 @@
+-- Create applications table
+CREATE TABLE applications (
+    id SERIAL PRIMARY KEY,
+    user_id VARCHAR NOT NULL,
+    job_id VARCHAR NOT NULL,
+    cover_letter TEXT,
+    cv_path VARCHAR,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for applications table
+CREATE INDEX idx_applications_user_id ON applications(user_id);
+CREATE INDEX idx_applications_job_id ON applications(job_id);
+
+-- Add unique constraint for applications
+ALTER TABLE applications 
+ADD CONSTRAINT unique_user_job_application 
+UNIQUE (user_id, job_id);
+
+-- Create Jobs table
+CREATE TABLE "Jobs" (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) UNIQUE NOT NULL,
+    company VARCHAR(255),
+    location VARCHAR(255) NOT NULL,
+    salary VARCHAR(255),
+    job_type VARCHAR(100) NOT NULL,
+    vacancy_qty INTEGER,
+    job_description TEXT NOT NULL,
+    responsibilities TEXT NOT NULL,
+    deadline VARCHAR(100),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for Jobs table
+CREATE INDEX idx_jobs_company ON "Jobs"(company);
+CREATE INDEX idx_jobs_location ON "Jobs"(location);
+CREATE INDEX idx_jobs_job_type ON "Jobs"(job_type);
+CREATE INDEX idx_jobs_created_at ON "Jobs"(created_at);
+
+-- Create users table
+CREATE TABLE users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    firstname VARCHAR(255) NOT NULL,
+    lastname VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    phone VARCHAR(20),
+    address TEXT,
+    password VARCHAR(255) NOT NULL,
+    role VARCHAR(20) NOT NULL DEFAULT 'jobseeker' CHECK (role IN ('jobseeker')),
+    verification_code VARCHAR(255),
+    is_verified BOOLEAN NOT NULL DEFAULT false,
+    skills TEXT,
+    education TEXT,
+    experience TEXT,
+    cv_url VARCHAR(500),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Create indexes for users table
+CREATE INDEX idx_users_email ON users(email);
+CREATE INDEX idx_users_role ON users(role);
+CREATE INDEX idx_users_is_verified ON users(is_verified);
+CREATE INDEX idx_users_phone ON users(phone);
+CREATE INDEX idx_users_name ON users(firstname, lastname);
+
+-- Create admin table
+CREATE TABLE admin (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    username VARCHAR NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+--Added
+ALTER TABLE "Jobs"
+ADD COLUMN qualifications TEXT;
+
+UPDATE "Jobs"
+SET qualifications = '';
+
+ALTER TABLE "Jobs"
+ALTER COLUMN qualifications SET NOT NULL;

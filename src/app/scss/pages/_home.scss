@@ -127,7 +127,7 @@
       .service-list-item {
         border-bottom: 1px solid $primary-color;
 
-        button.accordion-button::after {
+        button.accordion-button {
           svg {
             path {
               stroke: $primary-color-highlight !important;

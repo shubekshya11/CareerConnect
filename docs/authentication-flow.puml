@@ -1,0 +1,139 @@
+@startuml Sakchha Authentication Flow
+!theme aws-orange
+title Sakchha Website - Authentication Flow
+
+actor User as U
+participant "Login Form\n(Client)" as LF
+participant "Middleware" as MW
+participant "Signin API\n/api/auth/signin" as API
+participant "Auth Token\nLib" as ATL
+database "PostgreSQL\nDatabase" as DB
+participant "Job Portal\n/job-portal" as JP
+participant "Admin Panel\n/admin" as AP
+
+== User Registration Flow ==
+note over U, DB : Registration Process (Optional - for new users)
+U -> LF : Fill registration form
+LF -> API : POST /api/register\n{firstname, lastname, email, phone, password}
+API -> DB : Check existing user\nSELECT * FROM users WHERE email = ?
+alt User doesn't exist
+    API -> API : Hash password (bcrypt)
+    API -> API : Generate verification code
+    API -> DB : INSERT new user\n{id: UUID, email, password_hash, verification_code}
+    API -> LF : Registration successful
+    note over U : Email verification process\n(separate flow)
+else User exists
+    API -> LF : Error: "Email already exists"
+end
+
+== User Login Flow ==
+U -> LF : Enter email & password
+LF -> API : POST /api/auth/signin\n{email, password}
+
+API -> DB : Find user\nSELECT * FROM users WHERE email = ?
+alt User found
+    API -> API : Verify password\nbcrypt.compare(password, user.password)
+    alt Password valid
+        API -> ATL : generateAccessToken(user)
+        ATL -> ATL : Create JWT token\n{id, email, role}\nExpires: 15 minutes
+        ATL -> API : Return access token
+        
+        API -> ATL : generateRefreshToken(user)
+        ATL -> ATL : Generate UUID token
+        ATL -> DB : Store refresh token\nINSERT INTO refresh_tokens\n{user_id: UUID, token, expires_at: 30 days}
+        ATL -> API : Return refresh token
+        
+        API -> LF : Success response\n{user: {id, email, firstname, lastname, role}, accessToken, refreshToken}
+        
+        LF -> LF : Update AuthContext\nsetUser(userData)
+        note right: Tokens stored in\nhttpOnly cookies only
+        
+        alt User role is "jobseeker"
+            LF -> JP : Redirect to /job-portal
+        else User role is "admin"
+            LF -> AP : Redirect to /admin
+        else Other role
+            LF -> LF : Redirect to home
+        end
+        
+    else Password invalid
+        API -> LF : Error: "Invalid email or password"
+    end
+else User not found
+    API -> LF : Error: "Invalid email or password"
+end
+
+== Protected Route Access ==
+U -> JP : Access /job-portal page
+JP -> MW : Request intercepted by middleware
+MW -> MW : Extract token from\nAuthorization header\nBearer <token>
+MW -> MW : Verify JWT token\njwt.verify(token, secret)
+
+alt Token valid and role = "jobseeker"
+    MW -> JP : Allow access
+    JP -> U : Display job portal
+else Token invalid or wrong role
+    MW -> LF : Redirect to /login
+end
+
+== Token Refresh Flow ==
+note over U, DB : When access token expires (15 minutes)
+LF -> API : POST /api/auth/refresh\n{refreshToken}
+API -> ATL : verifyRefreshToken(token)
+ATL -> DB : Find refresh token\nSELECT * FROM refresh_tokens WHERE token = ?
+alt Token found and not expired
+    ATL -> API : Return user_id
+    API -> DB : Get user data\nSELECT * FROM users WHERE id = user_id
+    API -> ATL : generateAccessToken(user)
+    ATL -> API : New access token
+    API -> LF : New access token\n{accessToken, user data}
+    LF -> LF : Update stored tokens
+else Token invalid/expired
+    ATL -> API : null
+    API -> LF : Error: "Invalid refresh token"
+    LF -> LF : Clear stored data\nRedirect to login
+end
+
+== Database Schema ==
+note over DB
+**Users Table (UUID Primary Key):**
+- id: UUID (Primary Key)
+- firstname, lastname: VARCHAR
+- email: VARCHAR (Unique)
+- phone: VARCHAR
+- password: VARCHAR (bcrypt hashed)
+- role: ENUM ('jobseeker', 'admin')
+- created_at, updated_at: TIMESTAMP
+
+**Refresh Tokens Table:**
+- id: SERIAL (Primary Key)
+- user_id: UUID (Foreign Key → users.id)
+- token: VARCHAR (UUID)
+- expires_at: TIMESTAMP
+- created_at: TIMESTAMP
+end note
+
+== Security Features ==
+note over MW, ATL
+**Security Measures:**
+• JWT tokens with short expiration (15 min)
+• Refresh tokens with longer expiration (30 days)
+• Password hashing with bcrypt (salt rounds: 10-12)
+• Role-based access control (RBAC)
+• Middleware protection for routes
+• UUID primary keys for users
+• Input validation and sanitization
+end note
+
+== Error Handling ==
+note over API, LF
+**Common Error Responses:**
+• 400: Bad Request (missing email/password)
+• 401: Unauthorized (invalid credentials)
+• 404: User not found
+• 500: Internal server error
+• Token validation errors handled gracefully
+• Automatic token refresh on expiration
+end note
+
+@enduml
