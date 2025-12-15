@@ -102,11 +102,11 @@ export default function RegisterForm() {
         onSubmit={handleSubmit}
         style={{ maxWidth: "400px", margin: "0 auto" }}
       >
-        <div className="sakchha-login-img text-center mb-3">
+        <div className="career-login-img text-center mb-3">
           <img
-            src="/images/logo.svg"
-            alt="Sakchha Register"
-            style={{ width: "100px", height: "auto" }}
+            src="/images/BlackNormal.png"
+            alt="careerConnect Register"
+            style={{ width: "250px", height: "auto" }}
           />
         </div>
 
@@ -179,7 +179,7 @@ export default function RegisterForm() {
 
         <button
           type="submit"
-          className="btn btn-sakchha-primary"
+          className="btn btn-career-primary"
           disabled={isLoading}
         >
           {isLoading ? "Registering..." : "Register"}

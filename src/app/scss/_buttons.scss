@@ -15,20 +15,20 @@
     text-decoration: none;
   }
 }
-.btn-sakchha-primary {
+.btn-career-primary {
   background-color: $primary-color;
   color: $white;
   &:hover {
-    background-color: $primary-color-light;
+    background-color: $primary-color-dark;
     color: $white;
   }
   &:focus-visible, &:focus {
-    background-color: $primary-color-light;
+    background-color: $primary-color-dark;
     color: $white;
-    box-shadow: 0 0 0 0.2rem rgba($primary-color-highlight, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.35);
   }
 }
-.btn-sakchha-secondary {
+.btn-career-secondary {
   background-color: $secondary-color;
   color: $white;
   &:hover {
@@ -37,22 +37,22 @@
   }
 }
 
-.btn-sakchha-outline {
+.btn-career-outline {
   background-color: transparent;
-  color: $black;
-  border: 1px solid $black;
+  color: $primary-color;
+  border: 1px solid $primary-color;
   &:hover {
-    background-color: $black;
+    background-color: $primary-color;
     color: $white;
   }
   &:focus, &:focus-visible {
-    background-color: $black;
+    background-color: $primary-color;
     color: $white;
-    box-shadow: 0 0 0 0.2rem rgba($black, 0.5);
+    box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.35);
   }
 }
 
-.btn-sakchha-outline-white {
+.btn-career-outline-white {
   color: $white;
   border: 1px solid $white;
   &:hover {
@@ -67,7 +67,7 @@
    }
 }
 
-.btn-sakchha-tertiary {
+.btn-career-tertiary {
   background-color: $tertiary-color;
   color: $white;
   &:hover {

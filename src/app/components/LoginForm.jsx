@@ -51,7 +51,7 @@ export default function LoginPage() {
         {/* LEFT COLUMN */}
         <div className="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center p-5 bg-light border-end">
           <h2 className="fw-bold text-center mb-4" style={{ fontSize: "2rem" }}>
-            Welcome to Sakchha Careers
+            Welcome to Career Connect
           </h2>
 
           <p className="lead text-center mb-3">
@@ -70,13 +70,13 @@ export default function LoginPage() {
               
               <div className="text-center mb-3">
                 <img 
-                  src="/images/logo.svg" 
+                  src="/images/BlackNormal.png" 
                   alt="Logo" 
-                  style={{ width: "100px", height: "auto" }} 
+                  style={{ width: "250px", height: "auto" }} 
                 />
               </div>
 
-              <h1 className="text-center mb-3">Sakchha Login</h1>
+              <h1 className="text-center mb-3">CareerConnect Login</h1>
 
               <input
                 type="text"
@@ -100,7 +100,7 @@ export default function LoginPage() {
 
               <button
                 type="submit"
-                className="btn btn-sakchha-primary w-100"
+                className="btn btn-career-primary w-100"
                 disabled={isLoading}
               >
                 {isLoading ? "Logging in..." : "Login"}

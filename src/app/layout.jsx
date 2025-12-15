@@ -6,15 +6,15 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import { Inter } from 'next/font/google';
 
 export const metadata = {
-  title: "Sakchha - Global BPO Service Provider",
+  title: "CareerConnect",
   description: "We are an outsourcing service provider based in Nepal, offering expert business solutions tailored to your needs.",
   keywords: "Outsourcing Solutions, Business Process Outsourcing, BPO Outsourcing, Back Office Support, Fincial Operations, Outsource, Customer Service, Data Entry, Virtual Assistant",
-  authors: [{ name: "Sakchha Technology Pvt. Ltd., Nepal" }],
+  authors: [{ name: "CareerConnect, Nepal" }],
   icons: {
     icon: "/favicon.ico",
   },
   openGraph: {
-    title: "Sakchha - Global BPO Service Provider",
+    title: "CareerConnect",
     description: "We are an outsourcing service provider based in Nepal, offering expert business solutions tailored to your needs.",
     type: "website",
     url: "https://sakchha.com",

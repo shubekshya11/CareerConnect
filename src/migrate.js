@@ -7,7 +7,7 @@ const runner = new MigrationRunner();
 
 program
   .name('migrate')
-  .description('Database migration tool for Sakchha website')
+  .description('Database migration tool for CareerConnect')
   .version('1.0.0');
 
 program

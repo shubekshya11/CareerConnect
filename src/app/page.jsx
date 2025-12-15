@@ -1,7 +1,6 @@
 import Header from "./components/Header.jsx";
 import Footer from "./components/Footer.jsx";
 import HeroSlider from "./components/HeroSlider.jsx";
-import Vacancy from "./components/Vacancy.jsx";
 
 export default function Home() {
   return (
@@ -9,6 +8,91 @@ export default function Home() {
       <Header />
       <main>
         <HeroSlider />
+        <section id="value-props" className="py-5">
+          <div className="container">
+            <div className="row align-items-end mb-4">
+              <div className="col-lg-7">
+                <p className="text-primary fw-semibold mb-2">Why Career Connect?</p>
+                <h2 className="display-6 fw-semibold">Built for fast-moving teams</h2>
+                <p className="lead fw-light">
+                  We combine vetted talent from Nepal with reliable processes so you get consistent delivery, predictable costs, and a partner that scales when you do.
+                </p>
+              </div>
+            </div>
+            <div className="row g-4">
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm border-0 value-card">
+                  <div className="card-body">
+                    <div className="icon-circle bg-primary-subtle mb-3">
+                      <span className="material-icons">group_work</span>
+                    </div>
+                    <h4 className="mb-2">Dedicated pods</h4>
+                    <p className="text-muted">
+                      Cross-functional pods that plug into your workflows and stay with you for the long run.
+                    </p>
+                    <ul className="list-unstyled small text-muted mb-0">
+                      <li className="d-flex align-items-center gap-2 mb-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        Daily standups and clear SLAs
+                      </li>
+                      <li className="d-flex align-items-center gap-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        Shared dashboards for visibility
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm border-0 value-card">
+                  <div className="card-body">
+                    <div className="icon-circle bg-secondary mb-3">
+                      <span className="material-icons">payments</span>
+                    </div>
+                    <h4 className="mb-2">Predictable costs</h4>
+                    <p className="text-muted">
+                      Transparent pricing with flexible ramp-up and ramp-down as priorities change.
+                    </p>
+                    <ul className="list-unstyled small text-muted mb-0">
+                      <li className="d-flex align-items-center gap-2 mb-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        Fixed monthly pods
+                      </li>
+                      <li className="d-flex align-items-center gap-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        No surprise add-ons
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+              <div className="col-lg-4">
+                <div className="card h-100 shadow-sm border-0 value-card">
+                  <div className="card-body">
+                    <div className="icon-circle bg-dark text-white mb-3">
+                      <span className="material-icons">verified_user</span>
+                    </div>
+                    <h4 className="mb-2">Reliable delivery</h4>
+                    <p className="text-muted">
+                      ISO-inspired playbooks, QA gates, and bilingual talent to keep communication crisp.
+                    </p>
+                    <ul className="list-unstyled small text-muted mb-0">
+                      <li className="d-flex align-items-center gap-2 mb-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        QA checklists every sprint
+                      </li>
+                      <li className="d-flex align-items-center gap-2">
+                        <span className="material-icons text-primary">check_circle</span>
+                        Secure file handling baked in
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section id="careers-highlight" className="py-5">
           <div className="container py-4">
             <div className="row align-items-center gy-4">
@@ -22,10 +106,10 @@ export default function Home() {
                   The careers portal lists every job we are hiring for today.
                 </p>
                 <div className="d-flex gap-3">
-                  <a href="/careers" className="btn btn-sakchha-primary">
+                  <a href="/careers" className="btn btn-career-primary">
                     View open roles
                   </a>
-                  <a href="/job-portal" className="btn btn-sakchha-outline">
+                  <a href="/job-portal" className="btn btn-career-outline">
                     Go to job portal
                   </a>
                 </div>
@@ -43,7 +127,7 @@ export default function Home() {
                             Learn about responsibilities, growth, and benefits before applying.
                           </p>
                         </div>
-                      </li>  {/* ← THIS WAS MISSING */}
+                      </li>
                       <li className="d-flex gap-3 mb-3">
                         <span className="material-icons text-primary">verified</span>
                         <div>
@@ -103,12 +187,12 @@ export default function Home() {
                   </li>
                 </ul>
                 <div className="d-flex gap-3 mt-3">
-                  <a href="/job-portal" className="btn btn-sakchha-primary">
+                  <a href="/job-portal" className="btn btn-career-primary">
                     Visit job portal
                   </a>
                   <a
                     href="/job-portal/profile"
-                    className="btn btn-sakchha-outline"
+                    className="btn btn-career-outline"
                   >
                     Update profile
                   </a>
@@ -136,7 +220,74 @@ export default function Home() {
           </div>
         </section>
 
-        <Vacancy />
+        {/* <section id="process" className="py-5">
+          <div className="container">
+            <div className="row align-items-start">
+              <div className="col-lg-6">
+                <p className="text-primary fw-semibold mb-2">Our Approach</p>
+                <h2 className="display-6 fw-semibold">A clear path from brief to delivery</h2>
+                <p className="lead fw-light pe-lg-5">
+                  We structure every engagement with checkpoints so you always know what’s shipped, what’s next, and what support you can count on.
+                </p>
+                <div className="d-flex flex-wrap gap-3 mt-3">
+                  <span className="pill">Back office support</span>
+                  <span className="pill">Finance ops</span>
+                  <span className="pill">Creative &amp; CX</span>
+                  <span className="pill">Tech &amp; data</span>
+                </div>
+              </div>
+              <div className="col-lg-5 offset-lg-1">
+                <div className="timeline">
+                  <div className="timeline-step">
+                    <div className="step-icon">
+                      <span className="material-icons">lightbulb</span>
+                    </div>
+                    <div>
+                      <h5 className="mb-1">01. Scope &amp; playbook</h5>
+                      <p className="text-muted mb-0">
+                        We map the workflows, define SLAs, and align on tools to mirror your way of working.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="timeline-step">
+                    <div className="step-icon">
+                      <span className="material-icons">school</span>
+                    </div>
+                    <div>
+                      <h5 className="mb-1">02. Onboard talent</h5>
+                      <p className="text-muted mb-0">
+                        Pods are trained on your processes with sample tasks and QA gates before going live.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="timeline-step">
+                    <div className="step-icon">
+                      <span className="material-icons">monitor_heart</span>
+                    </div>
+                    <div>
+                      <h5 className="mb-1">03. Ship &amp; iterate</h5>
+                      <p className="text-muted mb-0">
+                        Weekly reviews, dashboard reporting, and a success manager to keep the work on track.
+                      </p>
+                    </div>
+                  </div>
+                  <div className="timeline-step">
+                    <div className="step-icon">
+                      <span className="material-icons">auto_graph</span>
+                    </div>
+                    <div>
+                      <h5 className="mb-1">04. Scale with confidence</h5>
+                      <p className="text-muted mb-0">
+                        Add new roles or time zones as you grow with the same quality bar and governance.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section> */}
+
       </main>
       <Footer />
     </>

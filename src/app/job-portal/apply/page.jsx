@@ -180,7 +180,7 @@ const JobApplyFormContent = () => {
 
         <button
           type="submit"
-          className={`btn btn-sakchha-primary ${jobLoading ? "disabled placeholder" : ""}`}
+          className={`btn btn-career-primary ${jobLoading ? "disabled placeholder" : ""}`}
           disabled={loading || jobLoading}
           style={jobLoading ? { width: "200px", height: "38px" } : {}}
         >

@@ -56,7 +56,7 @@ const VerifyEmailContent = () => {
           <div className="text-center mb-3">
             <img
               src="/images/logo.svg"
-              alt="Sakchha Logo"
+              alt="CareerConnect Logo"
               className="mb-1"
               style={{ width: "100px" }}
             />
@@ -77,7 +77,7 @@ const VerifyEmailContent = () => {
 
           <button
             type="submit"
-            className="btn btn-sakchha-primary w-100"
+            className="btn btn-career-primary w-100"
             disabled={isLoading}
           >
             {isLoading ? "Verifying..." : "Verify Email"}

@@ -80,10 +80,10 @@ const JobsTable = ({ jobs, loading }) => {
               <div className="job-cta d-flex flex-column gap-2" style={{ minWidth: "120px" }}>
                 <>
                   <Link href={`/job-portal/apply?job_id=${job.id}`}>
-                    <button className="btn btn-sakchha-primary w-100">Apply Now</button>
+                    <button className="btn btn-career-primary w-100">Apply Now</button>
                   </Link>
                   <Link href={`/job-portal/${job.id}`}>
-                    <button className="btn btn-sakchha-outline w-100">Read more</button>
+                    <button className="btn btn-career-outline w-100">Read more</button>
                   </Link>
                 </>
               </div>

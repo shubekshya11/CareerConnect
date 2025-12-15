@@ -34,17 +34,7 @@ const JobPortalHeader = () => {
       <header id="job-header">
         <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
           <div className="container-fluid">
-            <a className="navbar-brand" href="/job-portal">
-              <img
-                src="/images/sakchha-careers-logo.svg"
-                alt="Sakchha Careers"
-              />
-              {process.env.NODE_ENV == 'development' && (
-                <span className="dev-mode-badge" title="Development Mode">
-                  DEV MODE
-                </span>
-              )}
-            </a>
+            
             <button
               className="navbar-toggler"
               type="button"

@@ -144,7 +144,7 @@ const AppliedJobsPage = () => {
                     ) : (
                       job.id && (
                         <Link href={`/job-portal/${job.id}`}>
-                          <button className="btn btn-sakchha-outline w-100">View Job</button>
+                          <button className="btn btn-career-outline w-100">View Job</button>
                         </Link>
                       )
                     )}

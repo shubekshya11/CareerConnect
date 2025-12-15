@@ -451,7 +451,7 @@ const ContactForm = () => {
             {errors.text && <div className="invalid-feedback d-block">{errors.text}</div>}
           </div>
           <div className="col-12">
-          <button type="submit" className="my-3 btn btn-sakchha-primary" disabled={loading}>
+          <button type="submit" className="my-3 btn btn-career-primary" disabled={loading}>
           {loading ? <span className="d-flex align-items-center justify-content-center gap-1"><i className="material-icons loading-animation">refresh</i> <span>Sending Inquiry</span></span> : <span className="d-flex align-items-center justify-content-center">Send Us An Inquiry</span>}
           </button>
           </div>

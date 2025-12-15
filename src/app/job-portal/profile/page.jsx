@@ -151,7 +151,7 @@ setProfile({
             {!isEditing && (
               <button
                 onClick={() => setIsEditing(true)}
-                className="btn btn-sakchha-primary btn-sm"
+                className="btn btn-career-primary btn-sm"
               >
                 Edit Profile
               </button>

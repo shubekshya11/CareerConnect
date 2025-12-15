@@ -116,7 +116,7 @@ const ChangePasswordPage = () => {
         <div className="d-grid">
           <button
             type="submit"
-            className="btn btn-sakchha-primary w-100"
+            className="btn btn-career-primary w-100"
             disabled={loading}
           >
             {loading ? "Updating..." : "Change Password"}

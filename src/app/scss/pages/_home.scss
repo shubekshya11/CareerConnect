@@ -95,6 +95,91 @@
   }
 }
 
+#value-props {
+  background-color: $grey-white;
+
+  .value-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.03);
+
+    &:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 14px 36px rgba(17, 4, 27, 0.08);
+    }
+  }
+
+  .icon-circle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    color: $primary-color-dark;
+  }
+}
+
+#process {
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.75rem;
+    background: rgba(95, 12, 121, 0.08);
+    color: $primary-color-dark;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .timeline-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+    padding: 1.25rem;
+    border: 1px solid #e9e2ef;
+    border-radius: 12px;
+    background: linear-gradient(120deg, #fff, #faf5ff);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.03);
+  }
+
+  .step-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(143, 23, 186, 0.12);
+    color: $primary-color-dark;
+  }
+}
+
+#cta-contact {
+  .cta-card {
+    background: linear-gradient(135deg, #5d0f79 0%, #8f17ba 50%, #c435f6 100%);
+    color: $white;
+
+    p,
+    h3 {
+      color: $white;
+    }
+
+    .btn-sakchha-outline {
+      border-color: $white;
+      color: $white;
+    }
+  }
+}
+
 #featured-services,
 #featured-vacancies,
 #contact-us {
@@ -439,7 +524,7 @@
   padding-top: 0;
   background-color: $primary-color-dark;
   color: $white;
-  display: none;
+  display: block;
 
   .btn-sakchha-outline {
     color: $white;
@@ -455,9 +540,15 @@
     .list-item {
       padding: 24px;
       border-bottom: 1px solid $white;
-      .image {
-        border: 1px solid $white;
+      .icon-circle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
         border-radius: 50%;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid rgba(255, 255, 255, 0.25);
       }
     }
   }
@@ -737,7 +828,11 @@
   }
 
   #skills-in-demand {
-    display: none;
+    display: block;
+    padding-top: 2rem;
+    .vacancy-list {
+      padding-left: 0 !important;
+    }
   }
 
   #providers-testimonial {

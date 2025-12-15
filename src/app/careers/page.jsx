@@ -64,8 +64,8 @@ const Careers = () => {
   return (
     <>
       <Header />
-      <section id="careers-hero" className="p-0 ">
-        <div className="box-container m-3 text-white">
+      <section id="careers-hero" className="p-0">
+        <div className="box-container text-white">
           <div className="container">
             <div className="row">
               <div className="col-md-6">

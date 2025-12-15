@@ -62,10 +62,10 @@ export default function SkAdmin() {
           className="form-group d-flex flex-column gap-3"
           onSubmit={handleSubmit}
         >
-          <div className="sakchha-login-img text-center">
-            <img src="/images/logo.svg" alt="Sakchha Login" />
+          <div className="career-login-img text-center">
+            <img src="/images/logo.svg" alt="careerConnect Login" />
           </div>
-          <h1 className="text-center">Sakchha Login</h1>
+          <h1 className="text-center">careerConnect Login</h1>
           <input
             type="text"
             name="username"
@@ -86,7 +86,7 @@ export default function SkAdmin() {
           />
           <button
             type="submit"
-            className="btn btn-sakchha-primary"
+            className="btn btn-career-primary"
             disabled={isLoading}
           >
             {isLoading ? "Logging in..." : "Login"}

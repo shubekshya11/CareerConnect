@@ -77,29 +77,21 @@ const Header = () => {
       <div
         id="menuOverlay"
         className={`overlayForMenu ${menuOpen ? "open" : ""}`}
-        onClick={() => setMenuOpen(false)} // Close on clicking the overlay
+        onClick={() => setMenuOpen(false)} 
       ></div>
       <div className="company-info">
         <div className="container">
           <div className="content">
             <div className="phone-and-email">
               <span>
-                <i className="material-icons">phone</i>+977-9802304960
+                <i className="material-icons">phone</i>+977-1234567890
               </span>
               <span>
                 <i className="material-icons">email</i>
                 <a href="mailto:info@careerconnect.com">info@careerconnect.com</a>
               </span>
             </div>
-            <div className="social-icons">
-              <a
-                href="https://www.linkedin.com/company/careers/posts/?feedView=all"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <img src="/images/icons-linkedin.svg" alt="Linkedin" />
-              </a>
-            </div>
+        
           </div>
         </div>
       </div>
@@ -108,12 +100,7 @@ const Header = () => {
         <div className="container">
           <div className="content">
             <a className="navbar-brand d-flex align-items-center" href="/">
-              <img src="/images/logo.svg" alt="CareerConnect" width="78" />
-              {process.env.NODE_ENV == 'development' && (
-                <span className="dev-mode-badge" title="Development Mode">
-                  DEV MODE
-                </span>
-              )}
+              <img src="/images/BlackNormal.png" alt="CareerConnect" width="200" />
             </a>
             <div
               className="hamburger"
@@ -148,34 +135,8 @@ const Header = () => {
                 </a>
               </li>
               <li>
-                <a
-                  href="/marketplace"
-                  className={getNavLinkClass("/marketplace")}
-                >
-                  Marketplace
-                </a>
-              </li>
-              <li>
                 <a href="/careers" className={getNavLinkClass("/careers")}>
                   Careers
-                </a>
-              </li>
-              <li>
-                <a href="/blogs" className={getNavLinkClass("/blogs")}>
-                  Blogs
-                </a>
-              </li>
-              {/* <li>
-                <a href="/distributors" className={getNavLinkClass("/distributors")}>
-                  Distributors
-                </a>
-              </li> */}
-              <li>
-                <a
-                  href="/contact"
-                  className="btn btn-sakchha-primary hide-btn-style-on-mobile"
-                >
-                  Connect With Us
                 </a>
               </li>
             </ul>
