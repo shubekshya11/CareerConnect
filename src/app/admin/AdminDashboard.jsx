@@ -14,16 +14,6 @@ export default function AdminDashboard({ user }) {
             </p>
             <ul className="list-group my-3 d-flex flex-column gap-2">
               <li className="list-group-item border-top-0 border-start-0 border-end-0">
-                <a href="/admin/blog-portal" className="text-decoration-none text-dark">
-                  <i className="bi bi-pencil-square me-2"></i> Blog Portal
-                </a>
-              </li>
-              <li className="list-group-item border-top-0 border-start-0 border-end-0">
-                <a href="/admin/file-manager" className="text-decoration-none text-dark">
-                  <i className="bi bi-folder2-open me-2"></i> File Manager
-                </a>
-              </li>
-              <li className="list-group-item border-top-0 border-start-0 border-end-0">
                 <a href="/admin/job-manager" className="text-decoration-none text-dark">
                   <i className="bi bi-pencil-square me-2"></i> Job Manager
                 </a>

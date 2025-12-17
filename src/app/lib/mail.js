@@ -19,9 +19,5 @@ export function createTransporterTeamSource() {
     host: process.env.ZOHO_EMAIL_HOST,
     port: process.env.EMAIL_PORT,
     secure: false,
-    auth: {
-      user: process.env.SMTP_TEAMSOURCE_EMAIL,
-      pass: process.env.SMTP_TEAMSOURCE_PASS,
-    },
   });
 }

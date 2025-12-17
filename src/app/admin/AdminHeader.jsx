@@ -19,21 +19,6 @@ const AdminHeader = () => {
           <div className="container-fluid">
             <a className="navbar-brand d-flex align-items-center" href="/admin">
               Admin Dashboard
-              {process.env.NODE_ENV == "development" && (
-                <span
-                  className="badge bg-warning text-dark ms-2 d-flex align-items-center"
-                  style={{ fontSize: "0.75rem" }}
-                  title="Development Mode"
-                >
-                  <span
-                    className="material-icons"
-                    style={{ fontSize: "14px", marginRight: "2px" }}
-                  >
-                    code
-                  </span>
-                  DEV
-                </span>
-              )}
             </a>
             <button
               className="navbar-toggler"
@@ -49,16 +34,6 @@ const AdminHeader = () => {
             <div className="collapse navbar-collapse" id="navbarNav">
               <ul className="navbar-nav">
                 <li className="nav-item">
-                  <a className="nav-link" href="/admin/blog-portal">
-                    Blog Portal
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/admin/file-manager">
-                    File Manager
-                  </a>
-                </li>
-                <li className="nav-item">
                   <a className="nav-link" href="/admin/job-manager">
                     Job Manager
                   </a>
@@ -68,16 +43,29 @@ const AdminHeader = () => {
                     Applications Review
                   </a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="/blogs">
-                    Blogs
+              </ul>
+              <ul className="navbar-nav ms-auto">
+                <li className="nav-item dropdown">
+                  <a
+                    className="nav-link dropdown-toggle d-flex align-items-center"
+                    href="#"
+                    id="adminDropdown"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    Admin
                   </a>
-                </li>
-
-                <li className="nav-item">
-                  <button className="nav-link" onClick={handleLogout}>
-                    Logout
-                  </button>
+                  <ul
+                    className="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="adminDropdown"
+                  >
+                    <li>
+                      <button className="dropdown-item" onClick={handleLogout}>
+                        Logout
+                      </button>
+                    </li>
+                  </ul>
                 </li>
               </ul>
             </div>

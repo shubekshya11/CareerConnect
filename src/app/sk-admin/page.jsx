@@ -63,9 +63,9 @@ export default function SkAdmin() {
           onSubmit={handleSubmit}
         >
           <div className="career-login-img text-center">
-            <img src="/images/logo.svg" alt="careerConnect Login" />
+            <img src="/images/BlackNormal.png" alt="CareerConnect Login" width="250" />
           </div>
-          <h1 className="text-center">careerConnect Login</h1>
+          <h1 className="text-center">CareerConnect Login</h1>
           <input
             type="text"
             name="username"

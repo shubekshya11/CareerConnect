@@ -125,16 +125,38 @@ const JobDetails = () => {
                 </div>
               </div>
             </div>
-            {["qualifications","job_description", "responsibilities"].map((key) => (
+
+            {["job_description", "qualifications", "responsibilities"].map((key) => (
               <div className="mb-4" key={key}>
                 <h5 className={`mb-2 ${loading ? "placeholder-glow" : ""}`}>
-                  {loading ? <span className="placeholder col-4"></span> : key.replace("_", " ").toUpperCase()}
+                  {loading ? (
+                    <span className="placeholder col-4"></span>
+                  ) : (
+                    key.replace("_", " ").toUpperCase()
+                  )}
                 </h5>
-                <div 
-                  className={`mb-0 ${loading ? "placeholder-glow" : ""}`}
-                  style={{ whiteSpace: "pre-line" }}
-                >
-                  {loading ? <span className="placeholder col-12"></span> : job[key] || "No description available."}
+                <div className={`mb-0 ${loading ? "placeholder-glow" : ""}`}>
+                  {loading ? (
+                    <span className="placeholder col-12"></span>
+                  ) : job[key] ? (
+                    key === "qualifications" || key === "responsibilities" ? (
+                      <ul className="mb-0 ps-3" style={{ paddingLeft: '1.5rem' }}>
+                        {job[key].split('\n').map((item, index) => (
+                          item.trim() && (
+                            <li key={index} className="mb-1">
+                              {item.replace(/^[-•*]\s*/, '').trim()}
+                            </li>
+                          )
+                        ))}
+                      </ul>
+                    ) : (
+                      <div style={{ whiteSpace: "pre-line" }}>
+                        {job[key]}
+                      </div>
+                    )
+                  ) : (
+                    "No description available."
+                  )}
                 </div>
               </div>
             ))}
