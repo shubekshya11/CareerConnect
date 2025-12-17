@@ -1,18 +1,12 @@
 import path from 'path';
-// import fs from 'fs';
+import fs from 'fs';
 import { NextResponse } from 'next/server';
 import db from '../../lib/db';
 import transporter from '../../lib/emailConfig';
-import * as AWS from 'aws-sdk';
 
-// const uploadDir = path.join(process.cwd(), 'storage', 'cvs');
-// if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
-
-AWS.config.update({
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  region: process.env.AWS_REGION,
-});
+// Local upload directory for CVs
+const uploadDir = path.join(process.cwd(), 'storage', 'cvs');
+if (!fs.existsSync(uploadDir)) fs.mkdirSync(uploadDir, { recursive: true });
 
 // POST 
 export async function POST(request) {
@@ -55,44 +49,16 @@ export async function POST(request) {
             const safeUsername = email.split("@")[0].replace(/[^a-zA-Z0-9-_]/g, '_');
             const safeJobTitle = job.title.replace(/[^a-zA-Z0-9-_]/g, '_');
             const customFilename = `${safeUsername}_${safeJobTitle}_${Date.now()}${ext}`;
-            // const filePath = path.join(uploadDir, customFilename);
+            const filePath = path.join(uploadDir, customFilename);
 
-            // Convert file to buffer and write to disk
+            // Convert file to buffer and write to disk locally
             const bytes = await cvFile.arrayBuffer();
             const buffer = Buffer.from(bytes);
-            // fs.writeFileSync(filePath, buffer);
+            fs.writeFileSync(filePath, buffer);
 
-            // Determine content type
-            let contentType = 'application/octet-stream';
-            switch (ext) {
-                case '.pdf':
-                    contentType = 'application/pdf';
-                    break;
-                case '.doc':
-                    contentType = 'application/msword';
-                    break;
-                case '.docx':
-                    contentType = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
-                    break;
-            }
-
-            // Upload to S3
-            const s3 = new AWS.S3();
-            const s3Key = `user_resumes/${customFilename}`;
-            const bucketName = process.env.AWS_CV_BUCKET;
-
-            const uploadResult = await s3.upload({
-                Bucket: bucketName,
-                Key: s3Key,
-                Body: buffer,
-                ContentType: contentType,
-            }).promise();
-            console.log("Uploaded to S3:", uploadResult);
-
-            //cvPath = `/api/download-cv/${customFilename}`;
-            // Store download URL in database (extract filename from s3Key for the URL)
+            // Store relative path or filename for later download
             const filename = customFilename;
-            cvPath = `/api/download-cv/${filename}`;
+            cvPath = filename;
         } else {
             return NextResponse.json({ message: 'CV file is required.' }, { status: 400 });
         }

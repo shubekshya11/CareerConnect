@@ -65,7 +65,7 @@ const Careers = () => {
     <>
       <Header />
       <section id="careers-hero" className="p-0">
-        <div className="box-container text-white">
+        {/* <div className="box-container">
           <div className="container">
             <div className="row">
               <div className="col-md-6">
@@ -84,7 +84,7 @@ const Careers = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
       <main id="careers-portal">
         {/* Search Section */}
@@ -182,7 +182,7 @@ const Careers = () => {
                     ) : (
                       <>
                         <Link href={`/job-portal/apply?job_id=${job.id}`}>
-                          <button className="btn btn-sakchha-primary w-100">Apply Now</button>
+                          <button className="btn btn-career-primary w-100">Apply Now</button>
                         </Link>
                         <Link href={`/careers/${job.id}`}>
                           <button className="btn btn-sakchha-outline w-100">Read more</button>
