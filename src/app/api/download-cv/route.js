@@ -5,22 +5,19 @@ import { NextResponse } from 'next/server';
 // Local directory where CVs are stored
 const uploadDir = path.join(process.cwd(), 'storage', 'cvs');
 
-export async function GET(request, context) {
+export async function GET(request) {
   try {
     const url = new URL(request.url);
-    const queryFilename = url.searchParams.get('filename');
-    const routeFilename = context?.params?.filename;
+    const filename = url.searchParams.get('filename');
 
-    const rawFilename = queryFilename || routeFilename;
-
-    if (!rawFilename || typeof rawFilename !== 'string') {
+    if (!filename || typeof filename !== 'string') {
       return NextResponse.json(
         { message: 'Invalid filename' },
         { status: 400 }
       );
     }
 
-    const safeFilename = path.basename(rawFilename);
+    const safeFilename = path.basename(filename);
 
     const filePath = path.join(uploadDir, safeFilename);
 
@@ -46,10 +43,15 @@ export async function GET(request, context) {
         break;
     }
 
+    // Check if user wants to view (inline) or download (attachment)
+    const disposition = url.searchParams.get('download') === 'true' 
+      ? 'attachment' 
+      : 'inline';
+
     return new NextResponse(fileBuffer, {
       headers: {
         'Content-Type': contentType,
-        'Content-Disposition': `attachment; filename="${safeFilename}"`,
+        'Content-Disposition': `${disposition}; filename="${safeFilename}"`,
         'Cache-Control': 'private, no-cache',
       },
     });
@@ -65,3 +67,4 @@ export async function GET(request, context) {
     );
   }
 }
+

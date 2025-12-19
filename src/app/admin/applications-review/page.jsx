@@ -191,7 +191,14 @@ export default function AdminApplicationReview() {
                           <h5 className="mb-2">RESUME/CV</h5>
                           {selectedApplication.cv_path ? (
                             <button
-                              onClick={() => window.open(selectedApplication.cv_path, "_blank")}
+                              onClick={() => {
+                                const rawPath = selectedApplication.cv_path || "";
+                                if (!rawPath) return;
+                                window.open(
+                                  `/api/download-cv?filename=${encodeURIComponent(rawPath)}`,
+                                  "_blank"
+                                );
+                              }}
                               className="btn btn-success"
                             >
                               Download CV

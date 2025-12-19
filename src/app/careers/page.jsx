@@ -88,7 +88,7 @@ const Careers = () => {
       </section>
       <main id="careers-portal">
         {/* Search Section */}
-        <div className="container job-search-container my-5 border border-0">
+        <div className="container job-search-container my-4 border border-0">
           <form onSubmit={handleSearch} className="d-flex items-center">
             <input
               type="text"
@@ -120,11 +120,11 @@ const Careers = () => {
         )}
 
         {/* Jobs Table */}
-        <div className="container job-table w-full mb-5 pb-5">
+        <div className="container job-table w-full mb-4">
           {jobs.length > 0 || loading ? (
             <>
               {!loading && (
-                <div className="mb-4 text-muted">
+                <div className="mb-2 text-muted">
                   Showing {jobs.length} {jobs.length === 1 ? "position" : "positions"}
                 </div>
               )}

@@ -286,18 +286,37 @@ setProfile({
                 </span>
               </div>
 
-              <div className="row">
-                <div className="col-md-6 mb-3">
-                  <p><strong>Name:</strong> {profile.firstname} {profile.lastname}</p>
-                  <p><strong>Email:</strong> {profile.email}</p>
-                  <p><strong>Phone:</strong> {profile.phone || "N/A"}</p>
-                  <p><strong>Address:</strong> {profile.address || "N/A"}</p>
+              {/* Top contact details in two columns */}
+              <div className="row mb-3">
+                <div className="col-md-6 mb-2">
+                  <p className="mb-1"><strong>Name:</strong> {profile.firstname} {profile.lastname}</p>
+                  <p className="mb-1"><strong>Email:</strong> {profile.email}</p>
                 </div>
+                <div className="col-md-6 mb-2">
+                  <p className="mb-1"><strong>Phone:</strong> {profile.phone || "N/A"}</p>
+                  <p className="mb-1"><strong>Address:</strong> {profile.address || "N/A"}</p>
+                </div>
+              </div>
 
-                <div className="col-md-6 mb-3">
-                  <p><strong>Skills:</strong> {profile.skills || "N/A"}</p>
-                  <p><strong>Education:</strong> {profile.education || "N/A"}</p>
-                  <p><strong>Experience:</strong> {profile.experience || "N/A"}</p>
+              {/* Long-form sections stacked for better readability, without grey containers */}
+              <div className="mb-3">
+                <h6 className="text-uppercase text-muted small mb-1">Skills</h6>
+                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
+                  {profile.skills || "N/A"}
+                </div>
+              </div>
+
+              <div className="mb-3">
+                <h6 className="text-uppercase text-muted small mb-1">Education</h6>
+                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
+                  {profile.education || "N/A"}
+                </div>
+              </div>
+
+              <div className="mb-0">
+                <h6 className="text-uppercase text-muted small mb-1">Experience</h6>
+                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
+                  {profile.experience || "N/A"}
                 </div>
               </div>
 
