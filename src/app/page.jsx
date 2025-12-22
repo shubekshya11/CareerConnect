@@ -8,7 +8,7 @@ export default function Home() {
       <Header />
       <main>
         <HeroSlider />
-        <section id="value-props" className="py-5">
+        {/* <section id="value-props" className="py-5">
           <div className="container">
             <div className="row align-items-end mb-4">
               <div className="col-lg-7">
@@ -91,7 +91,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+        </section> */}
 
         <section id="careers-highlight" className="py-5">
           <div className="container py-4">
@@ -177,14 +177,14 @@ export default function Home() {
                     <span className="material-icons me-2 text-primary">
                       lock
                     </span>
-                    Secure document uploads for CVs and certificates
+                    Secure document uploads for CVs
                   </li>
-                  <li className="d-flex align-items-center mb-2">
+                  {/* <li className="d-flex align-items-center mb-2">
                     <span className="material-icons me-2 text-primary">
                       notifications
                     </span>
                     Instant alerts for interview and offer updates
-                  </li>
+                  </li> */}
                 </ul>
                 <div className="d-flex gap-3 mt-3">
                   <a href="/job-portal" className="btn btn-career-primary">
@@ -210,7 +210,7 @@ export default function Home() {
                         Search jobs, review the details, and submit an online application.
                       </li>
                       <li className="list-group-item px-0">
-                        Track progress, upload requested files, and receive updates.
+                        Upload requested files, and receive updates.
                       </li>
                     </ol>
                   </div>

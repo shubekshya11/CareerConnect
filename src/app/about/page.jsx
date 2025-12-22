@@ -2,12 +2,6 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
-const stats = [
-  { label: "Clients partnered", value: "40+", icon: "handshake" },
-  { label: "Candidates supported", value: "2.5k+", icon: "groups" },
-  { label: "Avg. response", value: "24 hrs", icon: "schedule" },
-];
-
 const values = [
   {
     icon: "verified_user",
@@ -70,7 +64,7 @@ export default function About() {
         <section id="about-overview" className="py-5">
           <div className="container">
             <div className="row gy-4 align-items-center">
-              <div className="col-lg-6">
+              <div className="col-lg-12">
                 <p className="text-primary fw-semibold mb-2">Who we are</p>
                 <h2 className="h3 fw-semibold mb-3">A partner for fast-moving teams</h2>
                 <p className="fw-light text-muted">
@@ -83,23 +77,6 @@ export default function About() {
                     <span key={item} className="badge bg-light text-primary border">
                       {item}
                     </span>
-                  ))}
-                </div>
-              </div>
-              <div className="col-lg-6">
-                <div className="row g-3">
-                  {stats.map((stat) => (
-                    <div key={stat.label} className="col-sm-6">
-                      <div className="card shadow-sm border-0 h-100">
-                        <div className="card-body">
-                          <div className="d-flex align-items-center gap-3 mb-2">
-                            <span className="material-icons text-primary">{stat.icon}</span>
-                            <div className="h4 mb-0">{stat.value}</div>
-                          </div>
-                          <p className="text-muted mb-0">{stat.label}</p>
-                        </div>
-                      </div>
-                    </div>
                   ))}
                 </div>
               </div>
