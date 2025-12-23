@@ -137,7 +137,7 @@ const ContactForm = () => {
           organization: "",
           text:""
         });
-        setErrors({}); // Clear all errors on successful submission
+        setErrors({}); 
       } else {
         setSuccess(false);
         setShowToast(true);
