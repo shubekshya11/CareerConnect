@@ -3,7 +3,7 @@
 
 
     .jobs-content {
-        margin-left: 300px;
+        margin-left: 280px;
         
         @media (max-width: 991.98px) {
             margin-left: 0;
@@ -58,13 +58,20 @@
 }
 
 #job-sidenav {
-border-right: 1px solid #ced4da;
+    border-right: 1px solid #e9ecef;
     position: fixed;
     top: 56px;
     left: 0;
-    height: 100vh;
-    width: 300px;
-    background-color: #fff;
+    height: calc(100vh - 56px);
+    width: 280px;
+    background: linear-gradient(180deg, #ffffff 0%, #f8f9fa 100%);
+    box-shadow: 2px 0 8px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    z-index: 100;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 400;
 
     // Hide sidebar on medium and small screens
     @media (max-width: 991.98px) {
@@ -75,27 +82,277 @@ border-right: 1px solid #ced4da;
         border-radius: 4px;
     }
 
-    .navbar-nav {
-        .nav-item {
-            padding: 0.5rem 1rem;
-            border: 1px solid #ced4da;
-            border-right: 0;
-            border-left: 0;
-            border-bottom: 0;
+    .sidebar-user-section {
+        padding: 1.5rem 1.25rem;
+        border-bottom: 1px solid #e9ecef;
+        background-color: #fff;
+        
+        .sidebar-avatar {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: center;
+            
+            .avatar-circle {
+                width: 56px;
+                height: 56px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, $primary-color 0%, $primary-color-dark 100%);
+                color: $white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.5rem;
+                font-weight: 400;
+                box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+            }
         }
-
-        .nav-item:last-child {
-            border-bottom: 1px solid #ced4da;
+        
+        .sidebar-user-info {
+            text-align: center;
+            
+            .sidebar-user-name {
+                font-size: 1rem;
+                font-weight: 400;
+                color: $text-color;
+                margin-bottom: 0.25rem;
+                line-height: 1.5;
+            }
+            
+            .sidebar-user-email {
+                font-size: 0.875rem;
+                font-weight: 400;
+                color: $text-color-light;
+                word-break: break-word;
+                line-height: 1.5;
+            }
         }
     }
 
+    .sidebar-nav-links {
+        flex: 1;
+        padding: 0.75rem 0;
+        
+        .sidebar-nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sidebar-nav-item {
+            margin: 0.25rem 0.75rem;
+            
+            .sidebar-nav-link {
+                display: flex;
+                align-items: center;
+                padding: 0.75rem 1rem;
+                color: $text-color;
+                text-decoration: none;
+                border-radius: 8px;
+                transition: all 0.2s ease;
+                font-weight: 400;
+                font-size: 1rem;
+                
+                .sidebar-nav-icon {
+                    font-size: 1.25rem;
+                    margin-right: 0.75rem;
+                    color: $text-color-light;
+                    transition: all 0.2s ease;
+                }
+                
+                .sidebar-nav-text {
+                    flex: 1;
+                }
+                
+                &:hover {
+                    background-color: rgba($primary-color, 0.08);
+                    color: $primary-color;
+                    transform: translateX(2px);
+                    
+                    .sidebar-nav-icon {
+                        color: $primary-color;
+                    }
+                }
+                
+                &.active {
+                    background: linear-gradient(90deg, rgba($primary-color, 0.1) 0%, rgba($primary-color, 0.05) 100%);
+                    color: $primary-color;
+                    border-left: 3px solid $primary-color;
+                    
+                    .sidebar-nav-icon {
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
 }
 
 #job-portal-apply-form {
-    margin-left: 300px;
+    margin-left: 280px;
     padding: 1rem;
     
     @media (max-width: 991.98px) {
         margin-left: 0;
+    }
+}
+
+#job-portal-profile {
+    .profile-content-wrapper {
+        margin-left: 280px;
+        padding: 2rem;
+        min-height: calc(100vh - 56px);
+        
+        @media (max-width: 991.98px) {
+            margin-left: 0;
+            padding: 1rem;
+        }
+    }
+    
+    .profile-card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        padding: 2rem;
+    }
+    
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 2rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #e9ecef;
+        
+        .profile-title {
+            font-size: 1.75rem;
+            font-weight: 400;
+            color: $text-color;
+            margin: 0;
+        }
+        
+        .profile-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .profile-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            
+            &.complete {
+                background-color: #d4edda;
+                color: #155724;
+            }
+            
+            &.incomplete {
+                background-color: #fff3cd;
+                color: #856404;
+            }
+        }
+    }
+    
+    .profile-view {
+        .profile-section {
+            margin-bottom: 2rem;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+        
+        .profile-contact-info {
+            .profile-info-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 1.5rem;
+                
+                @media (max-width: 768px) {
+                    grid-template-columns: 1fr;
+                }
+            }
+            
+            .profile-info-item {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                
+                .profile-info-label {
+                    font-size: 0.875rem;
+                    font-weight: 400;
+                    color: $text-color-light;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                
+                .profile-info-value {
+                    font-size: 1rem;
+                    color: $text-color;
+                    font-weight: 400;
+                    line-height: 1.6;
+                }
+            }
+        }
+        
+        .profile-section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.125rem;
+            font-weight: 400;
+            color: $text-color;
+            margin-bottom: 1rem;
+            
+            .profile-section-icon {
+                font-size: 1.5rem;
+                color: $primary-color;
+            }
+        }
+        
+        .profile-section-content {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1.25rem;
+            
+            .profile-text-content {
+                color: $text-color;
+                line-height: 1.6;
+                white-space: pre-wrap;
+                word-wrap: break-word;
+            }
+            
+            .profile-empty-state {
+                color: $text-color-light;
+                font-style: italic;
+            }
+        }
+    }
+    
+    .profile-form {
+        .form-label {
+            font-weight: 400;
+            color: $text-color;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            border: 1px solid #ced4da;
+            border-radius: 6px;
+            padding: 0.75rem;
+            
+            &:focus {
+                border-color: $primary-color;
+                box-shadow: 0 0 0 0.2rem rgba($primary-color, 0.25);
+            }
+        }
+        
+        .btn {
+            padding: 0.625rem 1.5rem;
+            border-radius: 6px;
+            font-weight: 400;
+        }
     }
 }

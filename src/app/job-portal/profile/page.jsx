@@ -140,29 +140,35 @@ setProfile({
 
   // Render UI
   return (
-  <div className="container-fluid">
-    <div className="row">
-      <div className="col-md-9 offset-md-3 p-4">
+  <div id="job-portal-profile" className="container-fluid px-0">
+    <div className="profile-content-wrapper">
 
-        <div className="border rounded shadow-sm bg-white p-4 mb-4">
+        <div className="profile-card">
 
-          <div className="d-flex justify-content-between align-items-center mb-4">
-            <h3 className="mb-0">My Profile</h3>
-            {!isEditing && (
-              <button
-                onClick={() => setIsEditing(true)}
-                className="btn btn-career-primary btn-sm"
-              >
-                Edit Profile
-              </button>
-            )}
+          <div className="profile-header">
+            <h2 className="profile-title">My Profile</h2>
+            <div className="profile-header-actions">
+              {!isEditing && (
+                <button
+                  onClick={() => setIsEditing(true)}
+                  className="btn btn-career-primary"
+                >
+                  Edit Profile
+                </button>
+              )}
+              {!isEditing && (
+                <span className={`profile-badge ${isProfileComplete ? "complete" : "incomplete"}`}>
+                  {isProfileComplete ? "Complete" : "Incomplete"}
+                </span>
+              )}
+            </div>
           </div>
 
-          {error && <p className="text-danger">{error}</p>}
-          {successMsg && <p className="text-success">{successMsg}</p>}
+          {error && <div className="alert alert-danger">{error}</div>}
+          {successMsg && <div className="alert alert-success">{successMsg}</div>}
 
           {isEditing ? (
-            <form onSubmit={handleSubmit} className="mt-3">
+            <form onSubmit={handleSubmit} className="profile-form">
 
               <div className="row">
                 <div className="col-md-6 mb-3">
@@ -277,46 +283,74 @@ setProfile({
 
             </form>
           ) : (
-            <div className="mt-3">
+            <div className="profile-view">
 
-              <div className="d-flex justify-content-between align-items-center mb-3">
-                <h5 className="mb-0">Profile Summary</h5>
-                <span className={`badge ${isProfileComplete ? "bg-success" : "bg-warning text-dark"}`}>
-                  {isProfileComplete ? "Complete" : "Incomplete"}
-                </span>
-              </div>
-
-              {/* Top contact details in two columns */}
-              <div className="row mb-3">
-                <div className="col-md-6 mb-2">
-                  <p className="mb-1"><strong>Name:</strong> {profile.firstname} {profile.lastname}</p>
-                  <p className="mb-1"><strong>Email:</strong> {profile.email}</p>
-                </div>
-                <div className="col-md-6 mb-2">
-                  <p className="mb-1"><strong>Phone:</strong> {profile.phone || "N/A"}</p>
-                  <p className="mb-1"><strong>Address:</strong> {profile.address || "N/A"}</p>
-                </div>
-              </div>
-
-              {/* Long-form sections stacked for better readability, without grey containers */}
-              <div className="mb-3">
-                <h6 className="text-uppercase text-muted small mb-1">Skills</h6>
-                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
-                  {profile.skills || "N/A"}
+              <div className="profile-section profile-contact-info">
+                <div className="profile-info-grid">
+                  <div className="profile-info-item">
+                    <span className="profile-info-label">Name</span>
+                    <span className="profile-info-value">{profile.firstname} {profile.lastname}</span>
+                  </div>
+                  <div className="profile-info-item">
+                    <span className="profile-info-label">Email</span>
+                    <span className="profile-info-value">{profile.email}</span>
+                  </div>
+                  <div className="profile-info-item">
+                    <span className="profile-info-label">Phone</span>
+                    <span className="profile-info-value">{profile.phone || "N/A"}</span>
+                  </div>
+                  <div className="profile-info-item">
+                    <span className="profile-info-label">Address</span>
+                    <span className="profile-info-value">{profile.address || "N/A"}</span>
+                  </div>
                 </div>
               </div>
 
-              <div className="mb-3">
-                <h6 className="text-uppercase text-muted small mb-1">Education</h6>
-                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
-                  {profile.education || "N/A"}
+              <div className="profile-section">
+                <h3 className="profile-section-title">
+                  <span className="material-icons-outlined profile-section-icon">code</span>
+                  Skills
+                </h3>
+                <div className="profile-section-content">
+                  {profile.skills ? (
+                    <div className="profile-text-content" style={{ whiteSpace: "pre-wrap" }}>
+                      {profile.skills}
+                    </div>
+                  ) : (
+                    <div className="profile-empty-state">No skills added yet</div>
+                  )}
                 </div>
               </div>
 
-              <div className="mb-0">
-                <h6 className="text-uppercase text-muted small mb-1">Experience</h6>
-                <div className="border rounded p-2 bg-light" style={{ whiteSpace: "pre-wrap" }}>
-                  {profile.experience || "N/A"}
+              <div className="profile-section">
+                <h3 className="profile-section-title">
+                  <span className="material-icons-outlined profile-section-icon">school</span>
+                  Education
+                </h3>
+                <div className="profile-section-content">
+                  {profile.education ? (
+                    <div className="profile-text-content" style={{ whiteSpace: "pre-wrap" }}>
+                      {profile.education}
+                    </div>
+                  ) : (
+                    <div className="profile-empty-state">No education information added yet</div>
+                  )}
+                </div>
+              </div>
+
+              <div className="profile-section">
+                <h3 className="profile-section-title">
+                  <span className="material-icons-outlined profile-section-icon">work</span>
+                  Experience
+                </h3>
+                <div className="profile-section-content">
+                  {profile.experience ? (
+                    <div className="profile-text-content" style={{ whiteSpace: "pre-wrap" }}>
+                      {profile.experience}
+                    </div>
+                  ) : (
+                    <div className="profile-empty-state">No experience information added yet</div>
+                  )}
                 </div>
               </div>
 
@@ -325,7 +359,6 @@ setProfile({
 
         </div>
 
-      </div>
     </div>
   </div>
 );

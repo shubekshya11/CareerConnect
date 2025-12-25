@@ -51,7 +51,7 @@ export default function About() {
                     <a href="/careers" className="btn btn-sakchha-outline-white">
                       Explore open roles
                     </a>
-                    <a href="/job-portal" className="btn btn-sakchha-primary">
+                    <a href="/job-portal" className="btn btn-sakchha-outline-white">
                       Visit job portal
                     </a>
                   </div>
