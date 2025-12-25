@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
@@ -8,6 +8,14 @@ const JobPortalHeader = () => {
   const { user, logout, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
+  const [profileDropdownOpen, setProfileDropdownOpen] = useState(false);
+
+  // Open dropdown if on profile pages
+  useEffect(() => {
+    if (pathname?.startsWith('/job-portal/profile')) {
+      setProfileDropdownOpen(true);
+    }
+  }, [pathname]);
 
   const handleLogout = async () => {
     await logout();
@@ -51,22 +59,23 @@ const JobPortalHeader = () => {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item dropdown">
                   <a
-                    className="nav-link dropdown-toggle d-flex align-items-center"
+                    className="nav-link dropdown-toggle job-portal-profile-dropdown d-flex align-items-center"
                     href="#"
                     id="profileDropdown"
                     role="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                   >
-                    <span
-                      className="rounded-circle bg-light text-primary fw-bold d-flex justify-content-center align-items-center me-2"
-                      style={{
-                        width: "32px",
-                        height: "32px",
-                        fontSize: "1rem",
-                      }}
-                    >
-                      {loading ? "" : getInitials(user)}
+                    <span className="job-portal-profile-avatar">
+                      {loading ? (
+                        <span className="placeholder-glow">
+                          <span className="placeholder rounded-circle" style={{ width: "36px", height: "36px" }}></span>
+                        </span>
+                      ) : (
+                        <span className="profile-avatar-circle">
+                          {getInitials(user)}
+                        </span>
+                      )}
                     </span>
                     
                     {loading ? (
@@ -77,32 +86,20 @@ const JobPortalHeader = () => {
                         <span className="placeholder col-12"></span>
                       </span>
                     ) : (
-                      user?.firstname || user?.email || " "
+                      <span className="job-portal-profile-name">
+                        {user?.firstname || user?.email || " "}
+                      </span>
                     )}
+                    {/* <span className="material-icons-outlined job-portal-dropdown-arrow">expand_more</span> */}
                   </a>
                   <ul
-                    className="dropdown-menu dropdown-menu-end"
+                    className="dropdown-menu dropdown-menu-end job-portal-dropdown-menu"
                     aria-labelledby="profileDropdown"
                   >
                     <li>
-                      <a className="dropdown-item" href="/job-portal/profile">
-                        View Profile
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <a className="dropdown-item" href="/job-portal/profile/change-password">
-                        Change Password
-                      </a>
-                    </li>
-                    <li>
-                      <hr className="dropdown-divider" />
-                    </li>
-                    <li>
-                      <button className="dropdown-item" onClick={handleLogout}>
-                        Logout
+                      <button className="dropdown-item job-portal-dropdown-item" onClick={handleLogout}>
+                        <span className="material-icons-outlined">logout</span>
+                        <span>Logout</span>
                       </button>
                     </li>
                   </ul>
@@ -167,14 +164,40 @@ const JobPortalHeader = () => {
                 <span className="sidebar-nav-text">Applied Jobs</span>
               </Link>
             </li>
-            <li className="sidebar-nav-item">
-              <Link 
-                href="/job-portal/profile" 
+            <li className="sidebar-nav-item sidebar-nav-item-dropdown">
+              <div 
                 className={`sidebar-nav-link ${pathname?.startsWith('/job-portal/profile') ? 'active' : ''}`}
+                onClick={() => setProfileDropdownOpen(!profileDropdownOpen)}
+                style={{ cursor: 'pointer' }}
               >
                 <span className="material-icons-outlined sidebar-nav-icon">person</span>
                 <span className="sidebar-nav-text">Profile</span>
-              </Link>
+                <span className={`material-icons-outlined sidebar-nav-arrow ${profileDropdownOpen ? 'open' : ''}`}>
+                  expand_more
+                </span>
+              </div>
+              {profileDropdownOpen && (
+                <ul className="sidebar-submenu">
+                  <li className="sidebar-submenu-item">
+                    <Link 
+                      href="/job-portal/profile" 
+                      className={`sidebar-submenu-link ${pathname === '/job-portal/profile' ? 'active' : ''}`}
+                    >
+                      <span className="material-icons-outlined sidebar-submenu-icon">account_circle</span>
+                      <span className="sidebar-submenu-text">View Profile</span>
+                    </Link>
+                  </li>
+                  <li className="sidebar-submenu-item">
+                    <Link 
+                      href="/job-portal/profile/change-password" 
+                      className={`sidebar-submenu-link ${pathname === '/job-portal/profile/change-password' ? 'active' : ''}`}
+                    >
+                      <span className="material-icons-outlined sidebar-submenu-icon">lock</span>
+                      <span className="sidebar-submenu-text">Change Password</span>
+                    </Link>
+                  </li>
+                </ul>
+              )}
             </li>
           </ul>
         </div>
