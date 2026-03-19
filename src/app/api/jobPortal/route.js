@@ -24,6 +24,37 @@ export async function POST(request) {
             return NextResponse.json({ message: 'User ID and Job ID are required.' }, { status: 400 });
         }
 
+        // Profile completion validation
+        const user = await db('users').where({ id: user_id }).first();
+        if (!user) {
+            return NextResponse.json({ message: 'User not found.' }, { status: 404 });
+        }
+
+        const requiredFields = {
+            address: user.address,
+            experience: user.experience,
+            skills: user.skills,
+        };
+
+        const missingFields = [];
+        Object.keys(requiredFields).forEach((field) => {
+            const value = requiredFields[field];
+            if (!value || (typeof value === 'string' && value.trim() === '')) {
+                missingFields.push(field);
+            }
+        });
+
+        if (missingFields.length > 0) {
+            return NextResponse.json(
+                { 
+                    message: 'Please complete your profile before applying. Complete your profile once to apply faster to jobs.',
+                    error: 'PROFILE_INCOMPLETE',
+                    redirectTo: '/job-portal/profile'
+                },
+                { status: 400 }
+            );
+        }
+
         const existing = await db('applications').where({ user_id, job_id }).first();
         if (existing) {
             return NextResponse.json({ message: 'You have already applied for this job.' }, { status: 400 });

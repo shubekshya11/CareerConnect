@@ -124,7 +124,22 @@ const Careers = () => {
           {jobs.length > 0 || loading ? (
             <>
               {!loading && (
-                <div className="mb-2 text-muted">
+                <div 
+                  className="mb-2 text-muted positions-count"
+                  style={{
+                    fontSize: '0.95rem',
+                    fontWeight: '500',
+                    color: '#00a9e0',
+                    background: 'rgba(0, 169, 224, 0.08)',
+                    padding: '8px 16px',
+                    borderRadius: '8px',
+                    borderLeft: '4px solid #00a9e0',
+                    display: 'block',
+                    width: '100%',
+                    transition: 'all 0.3s ease',
+                    marginBottom: '0.5rem'
+                  }}
+                >
                   Showing {jobs.length} {jobs.length === 1 ? "position" : "positions"}
                 </div>
               )}

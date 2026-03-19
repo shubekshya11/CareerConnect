@@ -139,6 +139,11 @@ const Header = () => {
                   Careers
                 </a>
               </li>
+              <li>
+                <a href="/contact" className={getNavLinkClass("/contact")}>
+                  Contact Us
+                </a>
+              </li>
             </ul>
           </div>
         </div>

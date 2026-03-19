@@ -9,27 +9,21 @@ export default function Home() {
       <main>
         <HeroSlider />
 
-        <section id="careers-highlight" className="highlight-section">
+        <section id="careers-highlight" className="highlight-section py-5">
           <div className="container">
             <div className="highlight-surface">
               <div className="row align-items-center gy-4">
                 <div className="col-lg-6">
-                  <span className="eyebrow text-primary d-inline-flex align-items-center gap-2">
-                    <span className="dot" />
+                  <h1 className="display-5 fw-bold mb-2">
                     Careers
-                  </span>
-                  <h2 className="display-6 fw-semibold mb-3">
+                  </h1>
+                  <h2 className="display-6 fw-semibold mb-4">
                     Find your next role with us
                   </h2>
                   <p className="lead fw-normal text-body-secondary mb-4">
                     Browse live openings, learn about the roles, and apply online. The
                     careers portal lists every job we are hiring for today.
                   </p>
-                  <div className="tag-row mb-4">
-                    <span className="tag">Live openings</span>
-                    <span className="tag">Apply online</span>
-                    <span className="tag">Every job we are hiring for today</span>
-                  </div>
                   <div className="d-flex flex-wrap gap-3">
                     <a href="/careers" className="btn btn-career-primary">
                       View open roles
@@ -88,15 +82,52 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="job-portal-highlight" className="highlight-section inverse">
+        <section className="py-5 bg-light">
+          <div className="container">
+            <div className="row align-items-center gy-4">
+              <div className="col-lg-6">
+                <h2 className="display-6 fw-semibold mb-4">
+                  Your Career Journey Starts Here
+                </h2>
+                <p className="lead fw-normal text-body-secondary mb-4">
+                  Our comprehensive job portal is designed to streamline your job search experience. 
+                  Create your professional profile, browse through curated opportunities, and manage 
+                  all your applications in one centralized platform.
+                </p>
+                <p className="text-body-secondary mb-4">
+                  With search options, application tracking, and secure document 
+                  management, finding your dream job has never been easier. Join professionals 
+                  who have successfully landed their ideal roles through CareerConnect.
+                </p>
+                <div className="d-flex flex-wrap gap-3">
+                  <a href="/job-portal" className="btn btn-career-primary">
+                    Access Job Portal
+                  </a>
+                  <a href="/job-portal/profile" className="btn btn-career-outline">
+                    Create Profile
+                  </a>
+                </div>
+              </div>
+              <div className="col-lg-6">
+                <div className="position-relative">
+                  <img 
+                    src="https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=600&q=80" 
+                    alt="Job Portal Dashboard" 
+                    className="img-fluid rounded-4 shadow-lg"
+                  />
+                  <div className="position-absolute top-0 start-0 w-100 h-100 bg-gradient-to-r from-primary/20 to-transparent rounded-4"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="job-portal-highlight" className="highlight-section inverse py-5">
           <div className="container">
             <div className="highlight-surface">
               <div className="row align-items-center gy-4">
                 <div className="col-lg-6 order-lg-2">
-                  <span className="eyebrow text-primary d-inline-flex align-items-center gap-2">
-                    <span className="dot" />
-                    Job Portal
-                  </span>
+                  
                   <h2 className="display-6 fw-semibold mb-3">
                     Manage your applications in one place
                   </h2>

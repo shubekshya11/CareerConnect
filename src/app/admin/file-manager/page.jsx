@@ -55,10 +55,7 @@ export default function FileManager() {
                     </td>
                     <td className="p-3 text-center">
                       <a
-                        href={
-                          `${process.env.NEXT_PUBLIC_AWS_S3_BUCKET_BLOG_URL}` +
-                          `${file.name}`
-                        }
+                        href={`/images/blogs/${encodeURIComponent(file.name)}`}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="text-blue-500 hover:underline mr-2"

@@ -147,12 +147,18 @@ export default function AdminApplicationReview() {
                           <p className="mb-1">
                             <strong>Address:</strong> {selectedApplication.address || selectedApplication.user?.address || "Not provided"}
                           </p>
-                          <p className="mb-1">
-                            <strong>Experience:</strong> {selectedApplication.experience || selectedApplication.user?.experience || "Not provided"}
-                          </p>
-                          <p className="mb-0">
-                            <strong>Skills:</strong> {selectedApplication.skills || selectedApplication.user?.skills || "Not provided"}
-                          </p>
+                          <div className="mb-1">
+                            <strong>Experience:</strong>
+                            <div style={{ whiteSpace: 'pre-wrap' }}>
+                              {selectedApplication.experience || selectedApplication.user?.experience || "Not provided"}
+                            </div>
+                          </div>
+                          <div className="mb-0">
+                            <strong>Skills:</strong>
+                            <div style={{ whiteSpace: 'pre-wrap' }}>
+                              {selectedApplication.skills || selectedApplication.user?.skills || "Not provided"}
+                            </div>
+                          </div>
                         </div>
 
                         {/* Job Information */}

@@ -14,7 +14,8 @@ const slides = [
     description:
       "Connect with top employers and discover opportunities that match your skills. Browse hundreds of job openings, apply seamlessly, and track your applications all in one place.",
     background:
-      "linear-gradient(135deg, #00a9e0 0%, #008bb8 45%, #005f7a 100%)",
+      "linear-gradient(135deg, rgba(0, 169, 224, 0.8) 0%, rgba(0, 139, 184, 0.8) 45%, rgba(0, 95, 122, 0.8) 100%)",
+    imageSrc: "/images/job.jpg",
     showCTA: true,
     secondaryCTA: {
       label: "Browse Jobs",
@@ -27,11 +28,26 @@ const slides = [
     description:
       "Create your profile, upload your CV, and apply to multiple positions with ease. Track application status, receive updates, and take control of your career path.",
     background:
-      "linear-gradient(135deg, #005f7a 0%, #0077a3 45%, #00a9e0 100%)",
+      "linear-gradient(135deg, rgba(0, 95, 122, 0.8) 0%, rgba(0, 119, 163, 0.8) 45%, rgba(0, 169, 224, 0.8) 100%)",
+    imageSrc: "/images/job.png",
     showCTA: true,
     secondaryCTA: {
       label: "Go to Job Portal",
       href: "/job-portal",
+    },
+  },
+  {
+    kicker: "Join Top Companies",
+    title: "Build Your Future With Us.",
+    description:
+      "Partner with leading organizations and take your career to new heights. Access exclusive opportunities, professional development, and competitive compensation packages.",
+    background:
+      "linear-gradient(135deg, rgba(0, 119, 163, 0.8) 0%, rgba(0, 95, 122, 0.8) 45%, rgba(0, 169, 224, 0.8) 100%)",
+    imageSrc: "/images/jobb",
+    showCTA: true,
+    secondaryCTA: {
+      label: "View Open Roles",
+      href: "/careers",
     },
   },
 ];

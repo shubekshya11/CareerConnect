@@ -21,6 +21,8 @@ const JobApplyFormContent = () => {
   const [message, setMessage] = useState("");
   const [jobLoading, setJobLoading] = useState(true);
   const [jobId, setJobId] = useState("");
+  const [profileComplete, setProfileComplete] = useState(true);
+  const [checkingProfile, setCheckingProfile] = useState(true);
 
   useEffect(() => {
     const jobId = searchParams.get("job_id");
@@ -33,6 +35,7 @@ const JobApplyFormContent = () => {
     }));
 
     if (jobId) fetchJobInfo(jobId);
+    if (user?.id) checkProfileOnLoad();
   }, [searchParams, user]);
 
   async function fetchJobInfo(jobId) {
@@ -47,6 +50,32 @@ const JobApplyFormContent = () => {
       setJobInfo(null);
     } finally {
       setJobLoading(false);
+    }
+  }
+
+  // Check profile completeness on page load
+  async function checkProfileOnLoad() {
+    try {
+      setCheckingProfile(true);
+      const res = await fetch("/api/auth/me", { credentials: "include" });
+      if (!res.ok) {
+        setProfileComplete(false);
+        return;
+      }
+
+      const data = await res.json();
+      const userData = data.user || {};
+
+      const hasAddress = userData.address && userData.address.trim() !== "";
+      const hasExperience = userData.experience && userData.experience.trim() !== "";
+      const hasSkills = userData.skills && userData.skills.trim() !== "";
+
+      setProfileComplete(hasAddress && hasExperience && hasSkills);
+    } catch (err) {
+      console.error("Profile check error:", err);
+      setProfileComplete(false);
+    } finally {
+      setCheckingProfile(false);
     }
   }
 
@@ -88,7 +117,13 @@ const JobApplyFormContent = () => {
       const result = await res.json();
       setMessage(result.message);
 
-      if (res.ok) resetForm();
+      if (res.ok) {
+        resetForm();
+        setProfileComplete(true); // Reset profile complete status after successful submission
+      } else if (result.error === 'PROFILE_INCOMPLETE') {
+        // Profile validation failed, update profile complete status
+        setProfileComplete(false);
+      }
     } catch (err) {
       console.error(err);
       setMessage("Error submitting application.");
@@ -134,6 +169,23 @@ const JobApplyFormContent = () => {
         )}
       </div>
       <hr />
+
+      {/* Profile Completion Message */}
+      {!checkingProfile && !profileComplete && (
+        <div className="mb-4 p-3" style={{ 
+          backgroundColor: '#f5f5f5', 
+          borderLeft: '4px solid #8f17ba', // Use your primary brand color
+          borderRadius: '4px'
+        }}>
+          <p className="mb-0" style={{ 
+            color: '#333333', 
+            fontSize: '0.875rem',
+            lineHeight: '1.5'
+          }}>
+            <strong>Complete profile first to apply faster.</strong> Make sure all the fields are filled in your profile.
+          </p>
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} encType="multipart/form-data">
         <input type="hidden" name="user_id" value={form.user_id} />
@@ -188,7 +240,32 @@ const JobApplyFormContent = () => {
         </button>
       </form>
 
-      {message && <div className="mt-3">{message}</div>}
+      {message && (
+        <div 
+          className="mt-3 p-3" 
+          style={{ 
+            backgroundColor: message.includes("successfully") 
+              ? '#f0f9f0' 
+              : message.includes("complete your profile") 
+              ? '#fff4e6' 
+              : '#ffe6e6',
+            borderLeft: `4px solid ${message.includes("successfully") 
+              ? 'rgb(25, 181, 19)' 
+              : message.includes("complete your profile") 
+              ? '#dba121' // Use your secondary brand color for warnings
+              : '#dc3545'}`,
+            borderRadius: '4px'
+          }}
+        >
+          <p className="mb-0" style={{ 
+            color: '#333333', 
+            fontSize: '0.875rem',
+            lineHeight: '1.5'
+          }}>
+            {message}
+          </p>
+        </div>
+      )}
     </div>
   );
 };
